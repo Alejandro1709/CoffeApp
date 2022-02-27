@@ -6,7 +6,7 @@ const coffees = [
   {
     id: 1,
     coffeeName: 'Mocha Frappuccino',
-    coffeImage: 'mocha_frap.png',
+    coffeeImage: 'mocha_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -28,7 +28,7 @@ const coffees = [
   {
     id: 2,
     coffeeName: 'Pistachio Mocha Frappuccino',
-    coffeImage: 'pistachio_mocha_frap.png',
+    coffeeImage: 'pistachio_mocha_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -50,7 +50,7 @@ const coffees = [
   {
     id: 3,
     coffeeName: 'Matcha Frappuccino',
-    coffeImage: 'pistachio_mocha_frap.png',
+    coffeeImage: 'pistachio_mocha_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -72,7 +72,7 @@ const coffees = [
   {
     id: 4,
     coffeeName: 'Black & White Frappuccino',
-    coffeImage: 'black_white_frap.png',
+    coffeeImage: 'black_white_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -94,7 +94,7 @@ const coffees = [
   {
     id: 5,
     coffeeName: 'Ultimate Caramel Frappuccino',
-    coffeImage: 'ultimate_caramel_frap.png',
+    coffeeImage: 'ultimate_caramel_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -116,7 +116,7 @@ const coffees = [
   {
     id: 6,
     coffeeName: 'Chocolucuma Frappuccino',
-    coffeImage: 'chocolucuma_frap.png',
+    coffeeImage: 'chocolucuma_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -138,7 +138,7 @@ const coffees = [
   {
     id: 7,
     coffeeName: 'Ultra Fresa Creme Frappuccino',
-    coffeImage: 'ultra_fresa_frap.png',
+    coffeeImage: 'ultra_fresa_frap.png',
     coffeePrices: [
       {
         type: 'Alto',
@@ -160,7 +160,7 @@ const coffees = [
   {
     id: 8,
     coffeeName: 'Caramel Frappucchino',
-    coffeImage: 'caramel_frap.png',
+    coffeeImage: 'caramel_frap.png',
     coffeePrices: [
       {
         type: 'Alto',

@@ -6,7 +6,7 @@ function CoffeeCard({ coffee }) {
       <div className='flex flex-col justify-center items-center gap-4'>
         <div className='w-40 h-40 mb-3'>
           <img
-            src={`../images/${coffee.coffeImage}.png`}
+            src={`../images/${coffee.coffeeImage}.png`}
             alt={coffee.coffeeName}
           />
         </div>
