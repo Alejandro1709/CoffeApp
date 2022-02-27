@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const coffees = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '/data/coffees.json'), 'utf8')
+  fs.readFileSync(path.join(__dirname, '../data/coffees.json'), 'utf8')
 );
 
-export const getAllCoffees = (req, res) => {
+exports.getAllCoffees = (req, res) => {
   res.send(coffees);
 };
