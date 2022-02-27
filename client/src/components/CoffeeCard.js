@@ -5,10 +5,7 @@ function CoffeeCard({ coffee }) {
     <div className='flex justify-center items-center h-[250px] w-96 mx-auto rounded-md mb-3 bg-white shadow cursor-pointer'>
       <div className='flex flex-col justify-center items-center gap-4'>
         <div className='w-40 h-40 mb-3'>
-          <img
-            src={`../images/${coffee.coffeeImage}.png`}
-            alt={coffee.coffeeName}
-          />
+          <img src={coffee.coffeImage} alt={coffee.coffeeName} />
         </div>
         <div className='flex flex-col justify-center items-center text-center'>
           <p className='font-bold'>{coffee.coffeeName}</p>

@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CoffeeCard from './CoffeeCard';
+import axios from 'axios';
 
-function CoffeeList({ data }) {
+function CoffeeList() {
+  const [coffees, setCoffees] = useState([]);
+
+  useEffect(() => {
+    const fetchCoffees = async () => {
+      try {
+        const { data } = await axios.get('/api/v1/coffees');
+
+        setCoffees(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCoffees();
+
+    return () => {
+      setCoffees([]);
+    };
+  }, []);
+
   return (
     <div className='flex flex-col md:flex-row md:flex-wrap mt-8'>
-      {data.map((coffee) => (
-        <CoffeeCard key={coffee.id} coffee={coffee} />
-      ))}
+      {coffees &&
+        coffees.map((coffee) => <CoffeeCard key={coffee.id} coffee={coffee} />)}
     </div>
   );
 }
