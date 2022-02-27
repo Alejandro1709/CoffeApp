@@ -1,15 +1,12 @@
 import React from 'react';
 import CoffeeCard from './CoffeeCard';
 
-function CoffeeList() {
+function CoffeeList({ data }) {
   return (
     <div className='flex flex-col md:flex-row md:flex-wrap mt-8'>
-      <CoffeeCard />
-      <CoffeeCard />
-      <CoffeeCard />
-      <CoffeeCard />
-      <CoffeeCard />
-      <CoffeeCard />
+      {data.map((coffe) => (
+        <CoffeeCard key={coffe.id} coffee={coffe} />
+      ))}
     </div>
   );
 }
