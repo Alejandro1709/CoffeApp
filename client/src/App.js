@@ -1,9 +1,14 @@
+import Navbar from './components/Navbar';
+import CoffeeList from './components/CoffeeList';
 import './App.css';
 
 function App() {
   return (
     <div className='App'>
-      <h1>Hello</h1>
+      <Navbar />
+      <main className='mx-4'>
+        <CoffeeList />
+      </main>
     </div>
   );
 }
