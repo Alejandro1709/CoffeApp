@@ -38,3 +38,9 @@ exports.createCoffee = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
+
+// Get Orders
+// Get Single Order
+// Create Order
+// Update Order
+// Delete Order
