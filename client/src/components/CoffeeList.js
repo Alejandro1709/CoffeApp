@@ -24,7 +24,7 @@ function CoffeeList() {
   }, []);
 
   return (
-    <div className='flex flex-col md:flex-row md:flex-wrap mt-8'>
+    <div className='flex justify-center md:gap-4 flex-col md:flex-row md:flex-wrap mt-8'>
       {coffees &&
         coffees.map((coffee) => <CoffeeCard key={coffee.id} coffee={coffee} />)}
     </div>
