@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleGetSingleCoffee } from '../actions/coffeeActions';
+import { addToCard } from '../actions/cartActions';
 import CoffeCard from '../components/CoffeeCard';
 
 function DetailPage() {
   const { slug } = useParams();
+
+  const [qty, setQty] = useState(1);
+  const [type, setType] = useState('');
 
   const dispatch = useDispatch();
 
@@ -17,7 +21,15 @@ function DetailPage() {
   const handleAddToCard = (e) => {
     e.preventDefault();
 
-    navigate('/cart');
+    const selectedPrice = coffee.coffeePrices.find(
+      (p) => p.type.toLowerCase() === type
+    );
+
+    const finalPrice = selectedPrice.price * qty;
+
+    dispatch(addToCard(coffee.coffeeSlug, qty, finalPrice));
+
+    navigate(`/cart/${coffee.coffeeSlug}?qty=${qty}&type=${type}`);
   };
 
   useEffect(() => {
@@ -41,6 +53,7 @@ function DetailPage() {
                 <select
                   name='coffeeType'
                   className='border p-2 rounded-md'
+                  onChange={(e) => setType(e.target.value)}
                   required
                 >
                   <option>-- SELECT COFFEE SIZE --</option>
@@ -56,10 +69,11 @@ function DetailPage() {
                 <input
                   className='border p-2 rounded-md w-full'
                   type='number'
-                  name='qty'
+                  name={qty}
                   placeholder='Quantity'
                   min={1}
                   defaultValue={1}
+                  onChange={(e) => setQty(e.target.value)}
                   required
                 />
               </div>
