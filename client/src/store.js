@@ -5,13 +5,23 @@ import {
   getCoffeesReducer,
   getSingleCoffeeReducer,
 } from './reducers/coffeeReducers';
+import { cartReducer } from './reducers/cartReducers';
 
 const reducer = combineReducers({
   getCoffees: getCoffeesReducer,
   getSingleCoffee: getSingleCoffeeReducer,
+  cart: cartReducer,
 });
 
-const initialState = {};
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+
+const initialState = {
+  cart: {
+    cartItems: cartItemsFromStorage,
+  },
+};
 
 const middleware = [thunk];
 
