@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { handleGetSingleCoffee } from '../actions/coffeeActions';
+import CoffeCard from '../components/CoffeeCard';
 
 function DetailPage() {
   const { slug } = useParams();
 
-  const [currentCoffee, setCurrentCoffee] = useState({});
+  const dispatch = useDispatch();
+
+  const getSingleCoffee = useSelector((state) => state.getSingleCoffee);
+  const { coffee, loading, error } = getSingleCoffee;
 
   useEffect(() => {
-    const fetchSingleCoffee = async (slug) => {
-      try {
-        const { data } = await axios.get(`/api/v1/coffees/${slug}`);
+    dispatch(handleGetSingleCoffee(slug));
+  }, [dispatch, slug]);
 
-        setCurrentCoffee(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  loading && <span>loading...</span>;
 
-    fetchSingleCoffee(slug);
-
-    return () => {
-      setCurrentCoffee({});
-    };
-  }, [slug]);
-
-  return <div>DetailPage {currentCoffee.coffeeSlug}</div>;
+  return (
+    <div>
+      {error && <span>{error}</span>}
+      {coffee ? <CoffeCard coffee={coffee} /> : <span>No Coffee Found</span>}
+    </div>
+  );
 }
 
 export default DetailPage;
+
+// TODO:
+// REDUX
+// DETAIL PAGE

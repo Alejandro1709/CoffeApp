@@ -12,7 +12,7 @@ function CoffeeCard({ coffee }) {
           <div className='flex flex-col justify-center items-center text-center'>
             <p className='font-bold'>{coffee.coffeeName}</p>
             <span className='text-gray-500'>
-              S/. {coffee.coffeePrices[0].price}
+              S/. {coffee.coffeePrices && coffee.coffeePrices[0].price}
             </span>
           </div>
         </div>

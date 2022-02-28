@@ -1,34 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleGetAllCoffees } from '../actions/coffeeActions';
 import CoffeeCard from './CoffeeCard';
-import axios from 'axios';
 
 function CoffeeList() {
-  const [coffees, setCoffees] = useState([]);
+  const dispatch = useDispatch();
+
+  const getCoffees = useSelector((state) => state.getCoffees);
+  const { coffees, loading, error } = getCoffees;
 
   useEffect(() => {
-    const fetchCoffees = async () => {
-      try {
-        const { data } = await axios.get('/api/v1/coffees');
-
-        setCoffees(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchCoffees();
-
-    return () => {
-      setCoffees([]);
-    };
-  }, []);
+    dispatch(handleGetAllCoffees());
+  }, [dispatch]);
 
   return (
     <div className='flex justify-center md:gap-4 flex-col md:flex-row md:flex-wrap mt-8'>
-      {coffees &&
-        coffees.map((coffee) => (
-          <CoffeeCard key={coffee._id} coffee={coffee} />
-        ))}
+      {loading && <span>Loading...</span>}
+      {error && <span>{error}</span>}
+      {coffees && coffees.length > 0 ? (
+        coffees.map((coffee) => <CoffeeCard key={coffee._id} coffee={coffee} />)
+      ) : (
+        <h1>No Coffees Were Found</h1>
+      )}
     </div>
   );
 }
