@@ -25,3 +25,16 @@ exports.getSingleCoffee = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
+
+exports.createCoffee = async (req, res) => {
+  try {
+    const { coffeeName, coffeePrices } = req.body;
+
+    const coffee = await Coffee.create({ coffeeName, coffeePrices });
+
+    res.status(201).json(coffee);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error.message);
+  }
+};

@@ -25,7 +25,7 @@ function DetailPage() {
     };
   }, [id]);
 
-  return <div>DetailPage {currentCoffee.id}</div>;
+  return <div>DetailPage {currentCoffee._id}</div>;
 }
 
 export default DetailPage;

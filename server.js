@@ -7,6 +7,8 @@ dotenv.config();
 
 connectDB();
 
+app.use(express.json());
+
 app.use('/api/v1/coffees', require('./routes/coffe.routes'));
 
 app.get('/', (req, res) => {
