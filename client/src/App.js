@@ -11,7 +11,7 @@ function App() {
       <main className='mx-4'>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/coffees/:id' element={<DetailPage />} />
+          <Route path='/coffees/:slug' element={<DetailPage />} />
         </Routes>
       </main>
     </div>

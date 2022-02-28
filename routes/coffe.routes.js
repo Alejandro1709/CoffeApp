@@ -10,6 +10,6 @@ router.get('/', getAllCoffees);
 
 router.post('/', createCoffee);
 
-router.get('/:id', getSingleCoffee);
+router.get('/:slug', getSingleCoffee);
 
 module.exports = router;

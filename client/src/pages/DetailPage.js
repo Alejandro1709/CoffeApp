@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function DetailPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [currentCoffee, setCurrentCoffee] = useState({});
 
   useEffect(() => {
-    const fetchSingleCoffee = async (id) => {
+    const fetchSingleCoffee = async (slug) => {
       try {
-        const { data } = await axios.get(`/api/v1/coffees/${id}`);
+        const { data } = await axios.get(`/api/v1/coffees/${slug}`);
 
         setCurrentCoffee(data);
       } catch (error) {
@@ -18,14 +18,14 @@ function DetailPage() {
       }
     };
 
-    fetchSingleCoffee(id);
+    fetchSingleCoffee(slug);
 
     return () => {
       setCurrentCoffee({});
     };
-  }, [id]);
+  }, [slug]);
 
-  return <div>DetailPage {currentCoffee._id}</div>;
+  return <div>DetailPage {currentCoffee.coffeeSlug}</div>;
 }
 
 export default DetailPage;

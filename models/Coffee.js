@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const coffeeSchema = new mongoose.Schema({
   coffeeName: {
@@ -27,4 +28,11 @@ const coffeeSchema = new mongoose.Schema({
   ],
 });
 
+coffeeSchema.pre('save', function (next) {
+  if (!this.isModified('coffeeName')) {
+    next();
+  }
+
+  this.coffeeSlug = slugify(this.coffeeName);
+});
 module.exports = mongoose.model('Coffee', coffeeSchema);

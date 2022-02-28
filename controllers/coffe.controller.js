@@ -13,7 +13,7 @@ exports.getAllCoffees = async (req, res) => {
 
 exports.getSingleCoffee = async (req, res) => {
   try {
-    const coffee = await Coffee.findById(req.params.id);
+    const coffee = await Coffee.findOne({ coffeeSlug: req.params.slug });
 
     if (!coffee) {
       return res.status(404).json({ message: 'Coffee Not Found' });
