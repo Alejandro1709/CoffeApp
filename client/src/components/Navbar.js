@@ -9,7 +9,9 @@ function Navbar() {
       </Link>
       <nav role='navigation'>
         <ul className='flex gap-4'>
-          <li>Cart</li>
+          <li>
+            <Link to='/cart'>Cart</Link>
+          </li>
           <li>Account</li>
         </ul>
       </nav>

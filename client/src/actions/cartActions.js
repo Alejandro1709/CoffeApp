@@ -14,7 +14,7 @@ export const addToCard = (slug, qty, type) => async (dispatch, getState) => {
       payload: {
         coffee: data._id,
         coffeeName: data.coffeeName,
-        coffeeImage: data.coffeImage,
+        coffeImage: data.coffeImage,
         coffeePrice: type,
         qty,
       },

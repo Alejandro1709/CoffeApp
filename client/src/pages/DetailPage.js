@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleGetSingleCoffee } from '../actions/coffeeActions';
-import { addToCard } from '../actions/cartActions';
 import CoffeCard from '../components/CoffeeCard';
 
 function DetailPage() {
@@ -20,14 +19,6 @@ function DetailPage() {
 
   const handleAddToCard = (e) => {
     e.preventDefault();
-
-    const selectedPrice = coffee.coffeePrices.find(
-      (p) => p.type.toLowerCase() === type
-    );
-
-    const finalPrice = selectedPrice.price * qty;
-
-    dispatch(addToCard(coffee.coffeeSlug, qty, finalPrice));
 
     navigate(`/cart/${coffee.coffeeSlug}?qty=${qty}&type=${type}`);
   };

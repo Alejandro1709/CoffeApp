@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleGetAllCoffees } from '../actions/coffeeActions';
 import CoffeeCard from './CoffeeCard';
 
-function CoffeeList() {
+function CoffeeList({ data }) {
   const dispatch = useDispatch();
 
   const getCoffees = useSelector((state) => state.getCoffees);
   const { coffees, loading, error } = getCoffees;
 
   useEffect(() => {
-    dispatch(handleGetAllCoffees());
-  }, [dispatch]);
+    if (!data) {
+      dispatch(handleGetAllCoffees());
+    }
+  }, [dispatch, data]);
 
   return (
     <div className='flex justify-center md:gap-4 flex-col md:flex-row md:flex-wrap mt-8'>
