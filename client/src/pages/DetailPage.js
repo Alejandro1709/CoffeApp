@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleGetSingleCoffee } from '../actions/coffeeActions';
 import CoffeCard from '../components/CoffeeCard';
@@ -9,8 +9,16 @@ function DetailPage() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const getSingleCoffee = useSelector((state) => state.getSingleCoffee);
   const { coffee, loading, error } = getSingleCoffee;
+
+  const handleAddToCard = (e) => {
+    e.preventDefault();
+
+    navigate('/cart');
+  };
 
   useEffect(() => {
     dispatch(handleGetSingleCoffee(slug));
@@ -21,20 +29,24 @@ function DetailPage() {
   return (
     <div className='mt-8'>
       {error && <span>{error}</span>}
-      {coffee ? (
+      {coffee && coffee !== null ? (
         <div className='flex flex-col md:flex-row md:gap-3 justify-center items-center'>
           {/* Coffee Preview */}
           <CoffeCard coffee={coffee} disabled />
           {/* Coffee Form */}
           <div className=''>
-            <h3 className='text-2xl font-bold'>☕️ {coffee.coffeeName}</h3>
-            <form>
+            <h3 className='text-2xl font-bold'>{coffee.coffeeName}</h3>
+            <form onSubmit={handleAddToCard}>
               <div className='m-3'>
-                <select className='border p-2 rounded-md'>
+                <select
+                  name='coffeeType'
+                  className='border p-2 rounded-md'
+                  required
+                >
                   <option>-- SELECT COFFEE SIZE --</option>
                   {coffee.coffeePrices &&
                     coffee.coffeePrices.map((price) => (
-                      <option key={price._id}>
+                      <option key={price._id} value={price.type.toLowerCase()}>
                         {price.type} - S/. {price.price}
                       </option>
                     ))}
@@ -44,13 +56,18 @@ function DetailPage() {
                 <input
                   className='border p-2 rounded-md w-full'
                   type='number'
+                  name='qty'
                   placeholder='Quantity'
                   min={1}
                   defaultValue={1}
+                  required
                 />
               </div>
               <div className='mb-3'>
-                <button className='bg-green-800 text-white p-2 w-full rounded-md hover:bg-green-900'>
+                <button
+                  type='submit'
+                  className='bg-green-800 text-white p-2 w-full rounded-md hover:bg-green-900'
+                >
                   Add to cart
                 </button>
               </div>
